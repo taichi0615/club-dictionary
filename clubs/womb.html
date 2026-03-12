@@ -16,31 +16,32 @@
             background:var(--black); color:var(--white);
             font-family:'Noto Sans JP',sans-serif; max-width:430px; margin:0 auto;
             border-left:1px solid var(--border); border-right:1px solid var(--border);
-            min-height:100vh; padding-bottom: 60px;
+            min-height:100vh; padding-bottom: 80px;
         }
 
         /* HEADER */
         .sticky-nav {
             position:fixed; top:0; left:50%; transform:translateX(-50%);
-            width:100%; max-width:430px; z-index:100;
+            width:100%; max-width:430px; z-index:1000;
             background:rgba(6,6,8,.94); backdrop-filter:blur(20px);
             border-bottom:1px solid var(--border);
             display:flex; align-items:center; justify-content:space-between; padding:13px 18px;
         }
         .back-link { font-family:'DM Mono'; font-size:10px; color:var(--muted); text-decoration:none; letter-spacing:2px; }
 
-        /* HERO VIDEO CONTAINER */
+        /* HERO VIDEO CONTAINER (TikTok公式対応版) */
         .hero-media {
-            width:100%; aspect-ratio:9/16; margin-top:52px; background:#000; position:relative;
-            overflow: hidden;
+            width:100%; min-height:600px; margin-top:52px; background:#000; position:relative;
+            display: flex; justify-content: center; align-items: flex-start; overflow: hidden;
         }
-        .hero-media iframe { width:100%; height:100%; border:none; }
+        /* TikTokの埋め込みが崩れないように調整 */
+        .tiktok-embed { margin: 0 !important; width: 100% !important; border: none !important; }
         
-        .hero-bottom { position:absolute; bottom:20px; left:18px; right:18px; pointer-events:none; z-index: 10; }
+        .hero-bottom { position:absolute; bottom:20px; left:18px; right:18px; pointer-events:none; z-index: 100; }
         .hero-name { font-family:'Bebas Neue'; font-size:52px; letter-spacing:4px; line-height:1; text-shadow: 0 0 20px rgba(0,0,0,0.8); }
 
         /* SECTION */
-        .sec { padding:25px 18px; }
+        .sec { padding:25px 18px; position: relative; z-index: 10; background: var(--black); }
         .sec-lbl { font-family:'DM Mono'; font-size:8px; letter-spacing:3.5px; color:var(--gold); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
         .sec-lbl::before { content:''; width:16px; height:1px; background:var(--gold); }
         .desc-text { font-size:13px; line-height:1.8; color:var(--muted); }
@@ -67,11 +68,14 @@
 </div>
 
 <div class="hero-media">
-    <iframe 
-        src="https://www.tiktok.com/embed/v2/7279316447953259777" 
-        allow="fullscreen" 
-        style="width:100%; height:100%;">
-    </iframe>
+    <blockquote class="tiktok-embed" 
+        cite="https://www.tiktok.com/@womb_tokyo/video/7279316447953259777" 
+        data-video-id="7279316447953259777" 
+        style="max-width: 605px;min-width: 325px;" > 
+        <section> </section> 
+    </blockquote> 
+    <script async src="https://www.tiktok.com/embed.js"></script>
+
     <div class="hero-bottom">
         <div class="hero-name">WOMB</div>
     </div>
@@ -80,7 +84,7 @@
 <div class="sec">
     <div class="sec-lbl">ABOUT</div>
     <div class="desc-text">
-        動画で紹介した通り、アジア最大級のミラーボールと世界基準の音響を誇る渋谷のアイコン。世界中のトップDJが集う、東京クラブカルチャーの聖地。
+        アジア最大級のミラーボールと世界基準の音響を誇る、東京・渋谷のアイコン。世界中のトップDJが集い、最先端の電子音楽を発信し続ける聖地。
     </div>
     
     <div class="sns-btns">
@@ -92,10 +96,10 @@
 <div class="sec">
     <div class="sec-lbl">ESSENTIAL INFO</div>
     <table class="info-table">
-        <tr><td class="info-lbl">AREA</td><td>SHIBUYA</td></tr>
-        <tr><td class="info-lbl">GENRE</td><td>TECHNO / HOUSE</td></tr>
+        <tr><td class="info-lbl">AREA</td><td>SHIBUYA / TOKYO</td></tr>
+        <tr><td class="info-lbl">GENRE</td><td>TECHNO / HOUSE / ELECTRONICA</td></tr>
         <tr><td class="info-lbl">ADDRESS</td><td>東京都渋谷区円山町2-16</td></tr>
-        <tr><td class="info-lbl">SYSTEM</td><td>MEN ¥3,500 / WOMEN ¥1,500 (目安)</td></tr>
+        <tr><td class="info-lbl">SYSTEM</td><td>MEN ¥3,500 / WOMEN ¥1,500 (DOOR)</td></tr>
     </table>
 </div>
 
