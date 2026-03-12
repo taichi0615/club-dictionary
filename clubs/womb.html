@@ -29,13 +29,15 @@
         }
         .back-link { font-family:'DM Mono'; font-size:10px; color:var(--muted); text-decoration:none; letter-spacing:2px; }
 
-        /* HERO VIDEO CONTAINER (TikTok公式対応版) */
+        /* VIDEO HERO (自前ファイル再生用) */
         .hero-media {
-            width:100%; min-height:600px; margin-top:52px; background:#000; position:relative;
-            display: flex; justify-content: center; align-items: flex-start; overflow: hidden;
+            width:100%; aspect-ratio:9/16; margin-top:52px; background:#000; position:relative;
+            overflow: hidden;
         }
-        /* TikTokの埋め込みが崩れないように調整 */
-        .tiktok-embed { margin: 0 !important; width: 100% !important; border: none !important; }
+        .hero-media video {
+            width:100%; height:100%; object-fit:cover;
+            filter:brightness(0.7); /* 動画を少し暗くして文字を読みやすく */
+        }
         
         .hero-bottom { position:absolute; bottom:20px; left:18px; right:18px; pointer-events:none; z-index: 100; }
         .hero-name { font-family:'Bebas Neue'; font-size:52px; letter-spacing:4px; line-height:1; text-shadow: 0 0 20px rgba(0,0,0,0.8); }
@@ -68,13 +70,13 @@
 </div>
 
 <div class="hero-media">
-    <blockquote class="tiktok-embed" 
-        cite="https://www.tiktok.com/@womb_tokyo/video/7279316447953259777" 
-        data-video-id="7279316447953259777" 
-        style="max-width: 605px;min-width: 325px;" > 
-        <section> </section> 
-    </blockquote> 
-    <script async src="https://www.tiktok.com/embed.js"></script>
+    <video 
+        src="../LCMF9iuQswiOI6AYY9KLpNuDum62Cp_pll3qyOhMX0Y.MP4" 
+        autoplay 
+        muted 
+        loop 
+        playsinline>
+    </video>
 
     <div class="hero-bottom">
         <div class="hero-name">WOMB</div>
@@ -84,7 +86,7 @@
 <div class="sec">
     <div class="sec-lbl">ABOUT</div>
     <div class="desc-text">
-        アジア最大級のミラーボールと世界基準の音響を誇る、東京・渋谷のアイコン。世界中のトップDJが集い、最先端の電子音楽を発信し続ける聖地。
+        アジア最大級のミラーボールと世界基準の音響を誇る、東京・渋谷のアイコン。手元の素材動画でその臨場感を確認できます。
     </div>
     
     <div class="sns-btns">
@@ -97,7 +99,7 @@
     <div class="sec-lbl">ESSENTIAL INFO</div>
     <table class="info-table">
         <tr><td class="info-lbl">AREA</td><td>SHIBUYA / TOKYO</td></tr>
-        <tr><td class="info-lbl">GENRE</td><td>TECHNO / HOUSE / ELECTRONICA</td></tr>
+        <tr><td class="info-lbl">GENRE</td><td>TECHNO / HOUSE</td></tr>
         <tr><td class="info-lbl">ADDRESS</td><td>東京都渋谷区円山町2-16</td></tr>
         <tr><td class="info-lbl">SYSTEM</td><td>MEN ¥3,500 / WOMEN ¥1,500 (DOOR)</td></tr>
     </table>
