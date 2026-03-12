@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Dictionary | クラブ図鑑</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; font-family: sans-serif; }
+        .club-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; }
+        .neon-text { text-shadow: 0 0 10px #ec4899, 0 0 20px #ec4899; }
+        .gradient-border { background: linear-gradient(45deg, #ec4899, #8b5cf6); height: 4px; border-radius: 2px; }
+    </style>
+</head>
+<body class="p-6">
+    <header class="mb-10 text-center">
+        <h1 class="text-4xl font-bold neon-text mb-2">CLUB DICTIONARY</h1>
+        <p class="text-gray-400 text-sm">Selected Nightclub Encyclopedia</p>
+    </header>
+
+    <main class="max-w-md mx-auto space-y-8">
+        <section class="club-card p-5 overflow-hidden">
+            <div class="gradient-border mb-4"></div>
+            <h2 class="text-2xl font-bold mb-2">CLUB NAME</h2>
+            <p class="text-pink-500 text-sm font-bold mb-4">#SHIBUYA #EDM #OPEN_AIR</p>
+            
+            <div class="rounded-xl overflow-hidden bg-black aspect-[9/16] mb-4 flex items-center justify-center border border-gray-700">
+                <span class="text-gray-500 text-xs">ここにSNS動画を表示</span>
+            </div>
+
+            <div class="space-y-3 text-sm text-gray-300">
+                <p>💡 <strong>System:</strong> Men ¥3,500 / Women ¥1,000</p>
+                <p>✍️ <strong>Note:</strong> 動画で紹介した通り、このクラブの音響システムは国内屈指。特に週末の深夜2時頃の盛り上がりは別格です。</p>
+            </div>
+            
+            <button class="w-full mt-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full font-bold text-white shadow-lg shadow-pink-500/20">
+                Instagramで見る
+            </button>
+        </section>
+    </main>
+</body>
+</html>
