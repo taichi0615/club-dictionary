@@ -2,41 +2,184 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Club Dictionary | クラブ図鑑</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CLUB DICTIONARY | NOCTEX TOKYO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@300;400;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #0f172a; color: #f8fafc; font-family: sans-serif; }
-        .club-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; }
-        .neon-text { text-shadow: 0 0 10px #ec4899, 0 0 20px #ec4899; }
-        .gradient-border { background: linear-gradient(45deg, #ec4899, #8b5cf6); height: 4px; border-radius: 2px; }
+        :root {
+            --black:#060608; --deep:#0a0a0e; --card:#0e0e12; --border:#1c1c26;
+            --gold:#c8a84a; --gold-lt:#e6c96a; --gold-dim:rgba(200,168,74,.13);
+            --white:#ede9e0; --muted:#50505c; --muted2:#82829a;
+            --tiktok:#25F4EE; --insta:#E1306C;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+        body {
+            background:var(--black); color:var(--white);
+            font-family:'Noto Sans JP',sans-serif; font-weight:300;
+            overflow-x:hidden; max-width:430px; margin:0 auto;
+            border-left:1px solid var(--border); border-right:1px solid var(--border);
+            min-height:100vh;
+        }
+        /* ノイズエフェクト */
+        body::after {
+            content:''; position:fixed; inset:0;
+            background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events:none; z-index:9998; opacity:.4;
+        }
+
+        /* ── HEADER ── */
+        .sticky-nav {
+            position:fixed; top:0; left:50%; transform:translateX(-50%);
+            width:100%; max-width:430px; z-index:100;
+            background:rgba(6,6,8,.94); backdrop-filter:blur(20px);
+            border-bottom:1px solid var(--border);
+            display:flex; align-items:center; justify-content:space-between;
+            padding:13px 18px;
+        }
+        .nav-logo { font-family:'Bebas Neue'; font-size:20px; letter-spacing:2px; color:var(--white); text-decoration:none; }
+        .nav-rank { font-family:'DM Mono'; font-size:9px; letter-spacing:3px; color:var(--gold); border:1px solid var(--gold-dim); background:var(--gold-dim); padding:4px 12px; border-radius:2px; }
+
+        /* ── HERO VIDEO ── */
+        .hero-media {
+            width:100%; aspect-ratio:9/16; max-height:600px;
+            position:relative; overflow:hidden; margin-top:52px; background:#000;
+        }
+        .hero-overlay {
+            position:absolute; inset:0; pointer-events:none;
+            background:linear-gradient(to top, rgba(6,6,8,1) 0%, transparent 40%);
+        }
+        .hero-badge {
+            position:absolute; top:14px; right:14px;
+            font-family:'DM Mono'; font-size:8px; letter-spacing:3px;
+            color:var(--gold); border:1px solid rgba(200,168,74,.5);
+            background:rgba(6,6,8,.7); backdrop-filter:blur(8px); padding:5px 12px;
+        }
+        .hero-bottom { position:absolute; bottom:0; left:0; right:0; padding:0 18px 20px; }
+        .hero-name { font-family:'Bebas Neue'; font-size:52px; letter-spacing:4px; line-height:.9; }
+
+        /* ── SCORE ── */
+        .sec { padding:20px 18px; }
+        .sec-lbl { font-family:'DM Mono'; font-size:8px; letter-spacing:3.5px; color:var(--gold); display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+        .sec-lbl::before { content:''; width:16px; height:1px; background:var(--gold); }
+        .score-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
+        .score-cell { background:var(--card); border:1px solid var(--border); padding:14px 10px; text-align:center; }
+        .score-val { font-family:'Bebas Neue'; font-size:34px; color:var(--white); line-height:1; }
+        .score-lbl { font-family:'DM Mono'; font-size:7px; letter-spacing:2px; color:var(--muted); }
+
+        /* ── BUTTONS ── */
+        .sns-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px; }
+        .btn {
+            display:block; padding:15px; text-align:center; border-radius:4px;
+            text-decoration:none; font-family:'DM Mono'; font-size:10px; letter-spacing:2px; font-weight:bold;
+        }
+        .btn-insta { background:var(--insta); color:white; }
+        .btn-tiktok { background:var(--tiktok); color:black; }
+
+        /* ── INFO TABLE ── */
+        .info-table { width:100%; border-collapse:collapse; margin-top:10px; }
+        .info-table td { padding:12px 0; border-bottom:1px solid var(--border); font-size:12px; }
+        .info-label { font-family:'DM Mono'; color:var(--muted); width:100px; font-size:8px; letter-spacing:2px; }
+
+        .rv { opacity:0; transform:translateY(20px); transition: all .6s ease; }
+        .rv.on { opacity:1; transform:translateY(0); }
+        .divider { height:1px; background:var(--border); margin:0 18px; }
     </style>
 </head>
-<body class="p-6">
-    <header class="mb-10 text-center">
-        <h1 class="text-4xl font-bold neon-text mb-2">CLUB DICTIONARY</h1>
-        <p class="text-gray-400 text-sm">Selected Nightclub Encyclopedia</p>
-    </header>
+<body>
 
-    <main class="max-w-md mx-auto space-y-8">
-        <section class="club-card p-5 overflow-hidden">
-            <div class="gradient-border mb-4"></div>
-            <h2 class="text-2xl font-bold mb-2">CLUB NAME</h2>
-            <p class="text-pink-500 text-sm font-bold mb-4">#SHIBUYA #EDM #OPEN_AIR</p>
-            
-            <div class="rounded-xl overflow-hidden bg-black aspect-[9/16] mb-4 flex items-center justify-center border border-gray-700">
-                <span class="text-gray-500 text-xs">ここにSNS動画を表示</span>
-            </div>
+<div class="sticky-nav">
+    <a href="#" class="nav-logo">CLUB DICTIONARY</a>
+    <span class="nav-rank" id="club-rank">TOKYO #01</span>
+</div>
 
-            <div class="space-y-3 text-sm text-gray-300">
-                <p>💡 <strong>System:</strong> Men ¥3,500 / Women ¥1,000</p>
-                <p>✍️ <strong>Note:</strong> 動画で紹介した通り、このクラブの音響システムは国内屈指。特に週末の深夜2時頃の盛り上がりは別格です。</p>
-            </div>
-            
-            <button class="w-full mt-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full font-bold text-white shadow-lg shadow-pink-500/20">
-                Instagramで見る
-            </button>
-        </section>
-    </main>
+<div class="hero-media">
+    <div id="video-wrapper" style="height:100%;">
+        <iframe id="video-iframe" src="" style="width:100%; height:100%; border:none;"></iframe>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-badge">MOVIE CLIP ★</div>
+    <div class="hero-bottom">
+        <div class="hero-name" id="club-name">WOMB</div>
+        <div class="hero-sub" id="club-sub" style="font-family:'DM Mono'; font-size:9px; color:var(--muted2); margin-top:8px;">SHIBUYA · TECHNO / HOUSE</div>
+    </div>
+</div>
+
+<div class="sec rv">
+    <div class="sec-lbl">NOCTEX SCORE</div>
+    <div class="score-grid">
+        <div class="score-cell"><span class="score-val" id="score-sound">98</span><br><span class="score-lbl">SOUND</span></div>
+        <div class="score-cell"><span class="score-val" id="score-crowd">85</span><br><span class="score-lbl">CROWD</span></div>
+        <div class="score-cell"><span class="score-val" id="score-vibe">95</span><br><span class="score-lbl">VIBE</span></div>
+        <div class="score-cell"><span class="score-val" id="score-service">75</span><br><span class="score-lbl">SERVICE</span></div>
+    </div>
+    <div class="sns-grid">
+        <a href="#" id="link-insta" class="btn btn-insta" target="_blank">INSTAGRAM</a>
+        <a href="#" id="link-tiktok" class="btn btn-tiktok" target="_blank">TikTok</a>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="sec rv">
+    <div class="sec-lbl">ABOUT</div>
+    <div class="desc-text" id="club-desc" style="font-size:12px; line-height:1.9; color:var(--muted2);">
+        動画で紹介した通り、東京を代表するクラブ。圧倒的な音響と世界基準の演出が魅力。
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="sec rv">
+    <div class="sec-lbl">ESSENTIAL INFO</div>
+    <table class="info-table">
+        <tr><td class="info-label">ADDRESS</td><td id="info-address">東京都渋谷区円山町2-16</td></tr>
+        <tr><td class="info-label">SYSTEM</td><td id="info-system">MEN ¥3,500 / WOMEN ¥1,000</td></tr>
+        <tr><td class="info-label">GENRE</td><td id="info-genre">TECHNO, HOUSE, EDM</td></tr>
+    </table>
+</div>
+
+<script>
+    // ──────── ここを書き換えるだけで店舗情報を更新できます ────────
+    const CLUB_DATA = {
+        name: "WOMB",
+        rank: "TOKYO #01",
+        sub: "SHIBUYA · TECHNO / HOUSE / EDM",
+        desc: "2000年にオープンして以来、東京を代表するクラブとして世界に名を轟かせている。アジア最大級のミラーボールと世界トップクラスの音響システムを擁する。",
+        scores: { sound: 98, crowd: 85, vibe: 95, service: 75 },
+        info: {
+            address: "東京都渋谷区円山町2-16",
+            system: "MEN ¥3,500 / WOMEN ¥1,500 (1D別)",
+            genre: "TECHNO, HOUSE, EDM"
+        },
+        links: {
+            insta: "https://www.instagram.com/reels/XXXX/",
+            tiktok: "https://www.tiktok.com/@XXXX/video/XXXX",
+            videoEmbed: "https://www.tiktok.com/embed/v2/7279316447953259777" // TikTokの埋め込みURL例
+        }
+    };
+
+    // データ反映
+    document.getElementById('club-name').textContent = CLUB_DATA.name;
+    document.getElementById('club-rank').textContent = CLUB_DATA.rank;
+    document.getElementById('club-sub').textContent = CLUB_DATA.sub;
+    document.getElementById('club-desc').textContent = CLUB_DATA.desc;
+    document.getElementById('score-sound').textContent = CLUB_DATA.scores.sound;
+    document.getElementById('score-crowd').textContent = CLUB_DATA.scores.crowd;
+    document.getElementById('score-vibe').textContent = CLUB_DATA.scores.vibe;
+    document.getElementById('score-service').textContent = CLUB_DATA.scores.service;
+    document.getElementById('info-address').textContent = CLUB_DATA.info.address;
+    document.getElementById('info-system').textContent = CLUB_DATA.info.system;
+    document.getElementById('info-genre').textContent = CLUB_DATA.info.genre;
+    document.getElementById('link-insta').href = CLUB_DATA.links.insta;
+    document.getElementById('link-tiktok').href = CLUB_DATA.links.tiktok;
+    document.getElementById('video-iframe').src = CLUB_DATA.links.videoEmbed;
+
+    // スクロールアニメーション
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); });
+    });
+    document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+</script>
+
 </body>
 </html>
